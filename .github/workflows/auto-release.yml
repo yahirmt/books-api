@@ -126,7 +126,7 @@ jobs:
       - name: Checkout GitOps repository
         uses: actions/checkout@v4
         with:
-          repository: parraletz/gitops-cf
+          repository: yahirmt/gitops-cf
           token: ${{ secrets.GITOPS_PAT }}
           ref: main
 
@@ -153,10 +153,10 @@ jobs:
           APP_FILE="apps/staging/books-api.yaml"
 
           # Update targetRevision for the OCI chart
-          yq eval '(.spec.sources[] | select(.repoURL == "oci://ghcr.io/parraletz/charts/books-api") | .targetRevision) = "'"${VERSION}"'"' -i "$APP_FILE"
+          yq eval '(.spec.sources[] | select(.repoURL == "oci://ghcr.io/yahirmt/charts/books-api") | .targetRevision) = "'"${VERSION}"'"' -i "$APP_FILE"
 
           # Update image.tag in valuesObject
-          yq eval '(.spec.sources[] | select(.repoURL == "oci://ghcr.io/parraletz/charts/books-api") | .helm.valuesObject.image.tag) = "'"${VERSION}"'"' -i "$APP_FILE"
+          yq eval '(.spec.sources[] | select(.repoURL == "oci://ghcr.io/yahirmt/charts/books-api") | .helm.valuesObject.image.tag) = "'"${VERSION}"'"' -i "$APP_FILE"
 
           echo "Updated $APP_FILE:"
           cat "$APP_FILE"
