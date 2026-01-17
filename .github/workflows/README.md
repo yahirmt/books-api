@@ -228,11 +228,11 @@ Para que el workflow de release actualice automáticamente el repo GitOps:
 ```bash
 # 1. Crear PAT en GitHub:
 # https://github.com/settings/tokens?type=beta
-# - Repository access: Only "parraletz/gitops-cf"
+# - Repository access: Only "yahirmt/gitops-cf"
 # - Permissions: Contents (Read and write)
 
 # 2. Agregar como secret:
-gh secret set GITOPS_PAT --repo parraletz/books-api
+gh secret set GITOPS_PAT --repo yahirmt/books-api
 # Pega el token cuando te lo pida
 ```
 
@@ -285,13 +285,13 @@ Los workflows utilizan GitHub Actions Cache para:
 # Permisos: Contents (Read and write) para repo gitops-cf
 
 # Agregarlo como secret
-gh secret set GITOPS_PAT --repo parraletz/books-api
+gh secret set GITOPS_PAT --repo yahirmt/books-api
 ```
 
 Verifica que el PAT tenga acceso al repo GitOps:
 ```bash
 # Listar secrets (no muestra valores)
-gh secret list --repo parraletz/books-api
+gh secret list --repo yahirmt/books-api
 ```
 
 ### El tag no se actualiza en GitOps repo

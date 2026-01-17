@@ -25,8 +25,8 @@ Abre http://localhost:3000
 bun run docker:dev
 
 # Producción
-docker pull ghcr.io/parraletz/books-api:latest
-docker run -p 3000:3000 ghcr.io/parraletz/books-api:latest
+docker pull ghcr.io/yahirmt/books-api:latest
+docker run -p 3000:3000 ghcr.io/yahirmt/books-api:latest
 ```
 
 ## 📦 Releases Automáticos

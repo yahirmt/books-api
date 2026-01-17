@@ -46,8 +46,8 @@ Al mergear el PR, automáticamente se:
 - ✅ Crea un GitHub Release
 - ✅ Genera un tag (ej: `v1.3.0`)
 - 🚀 Publica imágenes Docker:
-  - `ghcr.io/parraletz/books-api:1.3.0`
-  - `ghcr.io/parraletz/books-api:latest`
+  - `ghcr.io/yahirmt/books-api:1.3.0`
+  - `ghcr.io/yahirmt/books-api:latest`
 - 🔒 Genera attestation de provenance
 
 ## 📋 Tipos de commits

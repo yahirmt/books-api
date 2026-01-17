@@ -220,7 +220,7 @@ gh run view <run-id>
 # ✓ Update GitOps Repository
 
 # 6. Verificar GitOps
-gh api repos/parraletz/gitops-cf/commits --jq '.[0].commit.message'
+gh api repos/yahirmt/gitops-cf/commits --jq '.[0].commit.message'
 # Debe mostrar: "chore(books-api): update image tag to 1.2.0"
 ```
 
@@ -242,12 +242,12 @@ Cuando se hace un release, Auto Release ejecuta:
 - [x] Release Please crea release en GitHub
 - [x] Build imagen Docker multi-arch (amd64, arm64)
 - [x] Push a GHCR con tags:
-  - `ghcr.io/parraletz/books-api:1.2.0`
-  - `ghcr.io/parraletz/books-api:latest`
+  - `ghcr.io/yahirmt/books-api:1.2.0`
+  - `ghcr.io/yahirmt/books-api:latest`
 - [x] Genera attestation de provenance
 - [x] Actualiza versión del Helm chart (Chart.yaml)
 - [x] Package y push Helm chart a OCI:
-  - `oci://ghcr.io/parraletz/charts/books-api:1.2.0`
+  - `oci://ghcr.io/yahirmt/charts/books-api:1.2.0`
 - [x] Actualiza `gitops-cf/books/api/values-staging.yaml`
 - [x] Commit y push a GitOps repo
 - [ ] ArgoCD/Flux detecta cambio (automático)
@@ -272,7 +272,7 @@ gh run view <run-id> --json jobs --jq '.jobs[] | select(.name == "Create Release
 kubectl get deployment books-api -o jsonpath='{.spec.template.spec.containers[0].image}'
 
 # Comparar con GitOps
-curl -s https://raw.githubusercontent.com/parraletz/gitops-cf/main/books/api/values-staging.yaml | grep "tag:"
+curl -s https://raw.githubusercontent.com/yahirmt/gitops-cf/main/books/api/values-staging.yaml | grep "tag:"
 ```
 
 ## 🎯 Mejores Prácticas

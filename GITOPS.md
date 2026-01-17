@@ -13,7 +13,7 @@ Este documento describe el flujo de GitOps implementado para Books API.
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    parraletz/books-api                          │
+│                    yahirmt/books-api                          │
 │                    (Application Repo)                           │
 │                                                                 │
 │  Release Please → Crea PR automático → Merge PR                │
@@ -39,7 +39,7 @@ Este documento describe el flujo de GitOps implementado para Books API.
 │                                                                 │
 │  Outputs:                                                       │
 │  - GitHub Release (v2.0.0)                                     │
-│  - Docker Image (ghcr.io/parraletz/books-api:2.0.0)           │
+│  - Docker Image (ghcr.io/yahirmt/books-api:2.0.0)           │
 │  - Helm Chart (oci://ghcr.io/.../charts/books-api:2.0.0)      │
 │  - GitOps Commit (tag: 2.0.0)                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -47,7 +47,7 @@ Este documento describe el flujo de GitOps implementado para Books API.
                               │ Commit to GitOps repo
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   parraletz/gitops-cf                           │
+│                   yahirmt/gitops-cf                           │
 │                   (GitOps Repo)                                 │
 │                                                                 │
 │  books/api/values-staging.yaml:                                │
@@ -72,7 +72,7 @@ Este documento describe el flujo de GitOps implementado para Books API.
 │                   (Staging Environment)                         │
 │                                                                 │
 │  Deployment: books-api                                         │
-│  Image: ghcr.io/parraletz/books-api:2.0.0                     │
+│  Image: ghcr.io/yahirmt/books-api:2.0.0                     │
 │  Replicas: 2                                                   │
 │  Status: Running ✓                                             │
 └─────────────────────────────────────────────────────────────────┘
@@ -115,15 +115,15 @@ El workflow [.github/workflows/auto-release.yml](.github/workflows/auto-release.
 1. **release**: Release Please crea el GitHub Release
 2. **build-and-push**:
    - Construye la imagen Docker (una sola vez)
-   - La publica a `ghcr.io/parraletz/books-api:VERSION`
+   - La publica a `ghcr.io/yahirmt/books-api:VERSION`
    - También publica con tag `:latest`
    - Genera attestation de provenance
 3. **update-helm-chart**:
    - Actualiza `helm/books-api/Chart.yaml` con la nueva versión
    - Package del chart con la versión sincronizada con la app
-   - Publica el chart a `oci://ghcr.io/parraletz/charts/books-api:VERSION`
+   - Publica el chart a `oci://ghcr.io/yahirmt/charts/books-api:VERSION`
 4. **update-gitops**:
-   - Hace checkout del repo `parraletz/gitops-cf`
+   - Hace checkout del repo `yahirmt/gitops-cf`
    - Actualiza `books/api/values-staging.yaml` con el nuevo tag
    - Hace commit y push de los cambios automáticamente
 
@@ -142,7 +142,7 @@ Necesitas crear un PAT con permisos para escribir en el repo GitOps:
 
 1. Ve a GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens
 2. Crea un nuevo token con:
-   - Repository access: Solo `parraletz/gitops-cf`
+   - Repository access: Solo `yahirmt/gitops-cf`
    - Permissions:
      - Contents: Read and write
      - Metadata: Read-only
@@ -150,14 +150,14 @@ Necesitas crear un PAT con permisos para escribir en el repo GitOps:
 
 ### 2. Agregar Secret al Repositorio
 
-1. Ve a `parraletz/books-api` → Settings → Secrets and variables → Actions
+1. Ve a `yahirmt/books-api` → Settings → Secrets and variables → Actions
 2. Crea un nuevo secret:
    - Name: `GITOPS_PAT`
    - Value: `<tu-personal-access-token>`
 
 ### 3. Estructura del Repositorio GitOps
 
-El repositorio `parraletz/gitops-cf` debe tener la siguiente estructura:
+El repositorio `yahirmt/gitops-cf` debe tener la siguiente estructura:
 
 ```
 gitops-cf/
@@ -173,7 +173,7 @@ gitops-cf/
 
 ```yaml
 image:
-  repository: ghcr.io/parraletz/books-api
+  repository: ghcr.io/yahirmt/books-api
   pullPolicy: IfNotPresent
   tag: "1.0.0"  # Este valor será actualizado automáticamente
 
@@ -229,7 +229,7 @@ spec:
 
   # Fuente del código (GitOps repository)
   source:
-    repoURL: https://github.com/parraletz/gitops-cf
+    repoURL: https://github.com/yahirmt/gitops-cf
     targetRevision: main
     path: books/api
 
@@ -306,7 +306,7 @@ spec:
     - name: "URL"
       value: "https://books-api-staging.example.com"
     - name: "Repository"
-      value: "https://github.com/parraletz/books-api"
+      value: "https://github.com/yahirmt/books-api"
 ```
 
 ### Application Manifest para Production
@@ -333,7 +333,7 @@ spec:
   project: production  # Proyecto específico para producción
 
   source:
-    repoURL: https://github.com/parraletz/gitops-cf
+    repoURL: https://github.com/yahirmt/gitops-cf
     targetRevision: main  # O usar tag específico para producción
     path: books/api
     helm:
@@ -394,7 +394,7 @@ spec:
 
   source:
     # Usar esquema oci:// para Helm charts en OCI registries
-    repoURL: oci://ghcr.io/parraletz/charts/books-api
+    repoURL: oci://ghcr.io/yahirmt/charts/books-api
     # ✅ La versión del chart está sincronizada con la versión de la app
     targetRevision: 2.0.0  # Versión del chart = versión de la app
     # IMPORTANTE: path debe ser "." para OCI Helm charts
@@ -406,7 +406,7 @@ spec:
       # El workflow de GitOps NO puede actualizar este archivo automáticamente
       valuesObject:
         image:
-          repository: ghcr.io/parraletz/books-api
+          repository: ghcr.io/yahirmt/books-api
           tag: "2.0.0"  # ⚠️ Requiere actualización manual
           pullPolicy: IfNotPresent
 
@@ -471,7 +471,7 @@ spec:
   # ✅ MÚLTIPLES SOURCES (ArgoCD v2.6+)
   sources:
     # Source 1: Chart OCI
-    - repoURL: oci://ghcr.io/parraletz/charts/books-api
+    - repoURL: oci://ghcr.io/yahirmt/charts/books-api
       # ✅ Versión del chart sincronizada con la app
       targetRevision: 2.0.0  # Auto-actualizada por workflow
       chart: books-api
@@ -481,7 +481,7 @@ spec:
           - $values/books/api/values-staging.yaml
 
     # Source 2: Repositorio GitOps con values
-    - repoURL: https://github.com/parraletz/gitops-cf
+    - repoURL: https://github.com/yahirmt/gitops-cf
       targetRevision: main
       ref: values  # Nombre de referencia para usar en valueFiles
 
@@ -523,7 +523,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/parraletz/gitops-cf
+    repoURL: https://github.com/yahirmt/gitops-cf
     targetRevision: main
     path: books/api
     helm:
@@ -554,16 +554,16 @@ Si tu GHCR es privado, necesitas configurar credenciales en ArgoCD:
 
 ```bash
 # Para repositorio OCI
-argocd repo add oci://ghcr.io/parraletz/charts/books-api \
+argocd repo add oci://ghcr.io/yahirmt/charts/books-api \
   --type oci \
   --name books-api-chart \
   --username <github-username> \
   --password <github-token>
 
 # O con --enable-oci para repositorios Helm
-argocd repo add ghcr.io/parraletz/charts \
+argocd repo add ghcr.io/yahirmt/charts \
   --type helm \
-  --name parraletz-charts \
+  --name yahirmt-charts \
   --username <github-username> \
   --password <github-token> \
   --enable-oci
@@ -581,7 +581,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   name: books-api-chart
-  url: oci://ghcr.io/parraletz/charts/books-api
+  url: oci://ghcr.io/yahirmt/charts/books-api
   type: oci
   username: <github-username>
   password: <github-token>
@@ -615,7 +615,7 @@ argocd login argocd.example.com --username admin
 
 # Crear aplicación para staging usando chart desde Git
 argocd app create books-api-staging \
-  --repo https://github.com/parraletz/gitops-cf \
+  --repo https://github.com/yahirmt/gitops-cf \
   --path books/api \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace books-api-staging \
@@ -647,7 +647,7 @@ argocd app diff books-api-staging
 
 ```bash
 # Primero, agregar credenciales del OCI registry (si es privado)
-argocd repo add oci://ghcr.io/parraletz/charts/books-api \
+argocd repo add oci://ghcr.io/yahirmt/charts/books-api \
   --type oci \
   --name books-api-chart \
   --username <github-username> \
@@ -655,7 +655,7 @@ argocd repo add oci://ghcr.io/parraletz/charts/books-api \
 
 # Crear aplicación usando chart OCI
 argocd app create books-api-staging-oci \
-  --repo oci://ghcr.io/parraletz/charts/books-api \
+  --repo oci://ghcr.io/yahirmt/charts/books-api \
   --revision 1.0.0 \
   --path . \
   --dest-server https://kubernetes.default.svc \
@@ -676,7 +676,7 @@ argocd app create books-api-staging-oci \
    - **Application Name**: books-api-staging
    - **Project**: default
    - **Sync Policy**: Automatic
-   - **Repository URL**: https://github.com/parraletz/gitops-cf
+   - **Repository URL**: https://github.com/yahirmt/gitops-cf
    - **Path**: books/api
    - **Cluster**: https://kubernetes.default.svc
    - **Namespace**: books-api-staging
@@ -785,7 +785,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: https://github.com/parraletz/gitops-cf
+  url: https://github.com/yahirmt/gitops-cf
   ref:
     branch: main
 ```
@@ -817,7 +817,7 @@ spec:
 
 ```bash
 # Ver el último release
-gh release view --repo parraletz/books-api
+gh release view --repo yahirmt/books-api
 
 # Ver las imágenes publicadas
 gh api /user/packages/container/books-api/versions | jq '.[].metadata.container.tags'
@@ -827,7 +827,7 @@ gh api /user/packages/container/books-api/versions | jq '.[].metadata.container.
 
 ```bash
 # Clone el repo GitOps
-git clone https://github.com/parraletz/gitops-cf
+git clone https://github.com/yahirmt/gitops-cf
 cd gitops-cf
 
 # Ver el último commit
@@ -861,7 +861,7 @@ kubectl get pods -n books-api -l app.kubernetes.io/name=books-api
 **Solución**:
 ```bash
 # Verificar que el secret GITOPS_PAT existe
-gh secret list --repo parraletz/books-api
+gh secret list --repo yahirmt/books-api
 
 # Verificar que el PAT tiene los permisos correctos
 # Re-crear el PAT con permisos de escritura en Contents
@@ -961,7 +961,7 @@ git push origin v1.1.0
 
 # 4. GitHub Actions automáticamente:
 #    - Crea release
-#    - Build imagen → ghcr.io/parraletz/books-api:1.1.0
+#    - Build imagen → ghcr.io/yahirmt/books-api:1.1.0
 #    - Actualiza gitops-cf/books/api/values.yaml tag: "1.1.0"
 
 # 5. ArgoCD/Flux automáticamente:

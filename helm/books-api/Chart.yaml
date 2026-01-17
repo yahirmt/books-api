@@ -9,9 +9,9 @@ keywords:
   - api
   - hono
   - bun
-home: https://github.com/parraletz/books-api
+home: https://github.com/yahirmt/books-api
 sources:
-  - https://github.com/parraletz/books-api
+  - https://github.com/yahirmt/books-api
 maintainers:
-  - name: parraletz
-    url: https://github.com/parraletz
+  - name: yahirmt
+    url: https://github.com/yahirmt

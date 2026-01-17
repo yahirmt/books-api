@@ -84,7 +84,7 @@ Commit (feat/fix) → Push → PR automático → Merge → Release + Docker ima
 
 ```bash
 # 1. Clonar
-git clone https://github.com/parraletz/books-api.git
+git clone https://github.com/yahirmt/books-api.git
 cd books-api
 
 # 2. Instalar dependencias (instala Husky automáticamente)
@@ -101,8 +101,8 @@ bun run docker:dev
 
 ```bash
 # Desde GitHub Container Registry
-docker pull ghcr.io/parraletz/books-api:latest
-docker run -p 3000:3000 ghcr.io/parraletz/books-api:latest
+docker pull ghcr.io/yahirmt/books-api:latest
+docker run -p 3000:3000 ghcr.io/yahirmt/books-api:latest
 
 # O build local
 docker build -t books-api:latest .

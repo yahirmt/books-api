@@ -41,7 +41,7 @@ El chart se publica automáticamente a GHCR como parte del workflow de release d
 1. El workflow `auto-release.yml` actualiza automáticamente `Chart.yaml` con la nueva versión
 2. La versión del chart se sincroniza con la versión de la aplicación (ej: app v2.0.0 → chart v2.0.0)
 3. Empaqueta el chart con la nueva versión
-4. Lo publica a `oci://ghcr.io/parraletz/charts/books-api:VERSION`
+4. Lo publica a `oci://ghcr.io/yahirmt/charts/books-api:VERSION`
 
 **✅ Ventaja principal**: La versión del chart siempre coincide con la versión de la imagen de la aplicación, facilitando el seguimiento y despliegue.
 
@@ -60,7 +60,7 @@ helm package helm/books-api -d .helm-charts
 echo $GITHUB_TOKEN | helm registry login ghcr.io -u USERNAME --password-stdin
 
 # 3. Push a OCI registry
-helm push .helm-charts/books-api-1.0.0.tgz oci://ghcr.io/parraletz/charts
+helm push .helm-charts/books-api-1.0.0.tgz oci://ghcr.io/yahirmt/charts
 ```
 
 ## Instalación
@@ -69,10 +69,10 @@ helm push .helm-charts/books-api-1.0.0.tgz oci://ghcr.io/parraletz/charts
 
 ```bash
 # Instalar directamente
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 
 # O descargar primero
-helm pull oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm pull oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 helm install my-books-api books-api-1.0.0.tgz
 ```
 
@@ -85,7 +85,7 @@ helm install my-books-api ./helm/books-api
 ### Con valores personalizados
 
 ```bash
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.0 \
   --set replicaCount=3 \
   --set image.tag=1.0.0 \
@@ -95,7 +95,7 @@ helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
 O con un archivo de valores:
 
 ```bash
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.0 \
   -f custom-values.yaml
 ```
@@ -110,7 +110,7 @@ replicaCount: 2
 
 # Configuración de imagen
 image:
-  repository: ghcr.io/parraletz/books-api
+  repository: ghcr.io/yahirmt/books-api
   pullPolicy: IfNotPresent
   tag: "1.0.0"
 
@@ -170,13 +170,13 @@ resources:
 
 ```bash
 # Ver metadata
-helm show chart oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm show chart oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 
 # Ver valores por defecto
-helm show values oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm show values oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 
 # Ver todo
-helm show all oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm show all oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 ```
 
 ### Gestión de releases
@@ -192,7 +192,7 @@ helm status my-books-api
 helm history my-books-api
 
 # Upgrade
-helm upgrade my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm upgrade my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.1
 
 # Rollback
@@ -206,12 +206,12 @@ helm uninstall my-books-api
 
 ```bash
 # Dry run (ver los manifiestos sin instalar)
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.0 \
   --dry-run --debug
 
 # Template (generar manifiestos)
-helm template my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm template my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.0
 
 # Lint (validar el chart)
@@ -259,7 +259,7 @@ kubectl describe deployment my-books-api
 
 ```bash
 # Verificar que el workflow se ejecutó correctamente
-# Ir a: https://github.com/parraletz/books-api/actions
+# Ir a: https://github.com/yahirmt/books-api/actions
 
 # Verificar permisos del token
 # El GITHUB_TOKEN debe tener permisos de packages:write

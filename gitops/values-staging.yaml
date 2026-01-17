@@ -2,7 +2,7 @@
 # This file should be placed in: gitops-cf/books/api/values.yaml
 
 image:
-  repository: ghcr.io/parraletz/books-api
+  repository: ghcr.io/yahirmt/books-api
   pullPolicy: IfNotPresent
   tag: "1.0.0"  # This will be automatically updated by GitHub Actions
 

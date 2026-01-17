@@ -13,17 +13,17 @@ A Helm chart for deploying Books API - Built with Hono and Bun.
 
 ```bash
 # Pull the chart
-helm pull oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm pull oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 
 # Install the chart
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api --version 1.0.0
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
 ```
 
 ### From Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/parraletz/books-api.git
+git clone https://github.com/yahirmt/books-api.git
 cd books-api
 
 # Install the chart
@@ -43,7 +43,7 @@ The following table lists the configurable parameters of the Books API chart and
 | Parameter | Description | Default |
 |-----------|-------------|---------|
 | `replicaCount` | Number of replicas | `2` |
-| `image.repository` | Image repository | `ghcr.io/parraletz/books-api` |
+| `image.repository` | Image repository | `ghcr.io/yahirmt/books-api` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
 | `image.tag` | Image tag | `""` (defaults to chart appVersion) |
 | `service.type` | Service type | `ClusterIP` |
@@ -94,7 +94,7 @@ autoscaling:
 Install with custom values:
 
 ```bash
-helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.0 \
   -f values-custom.yaml
 ```
@@ -102,7 +102,7 @@ helm install my-books-api oci://ghcr.io/parraletz/charts/books-api \
 ## Upgrading the Chart
 
 ```bash
-helm upgrade my-books-api oci://ghcr.io/parraletz/charts/books-api \
+helm upgrade my-books-api oci://ghcr.io/yahirmt/charts/books-api \
   --version 1.0.1 \
   -f values-custom.yaml
 ```
@@ -120,4 +120,4 @@ curl http://localhost:8080/books
 
 ## Support
 
-For issues and questions, please visit: https://github.com/parraletz/books-api/issues
+For issues and questions, please visit: https://github.com/yahirmt/books-api/issues
