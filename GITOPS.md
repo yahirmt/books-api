@@ -175,7 +175,7 @@ gitops-cf/
 image:
   repository: ghcr.io/yahirmt/books-api
   pullPolicy: IfNotPresent
-  tag: "1.0.0"  # Este valor será actualizado automáticamente
+  tag: "3.3.5"  # Este valor será actualizado automáticamente
 
 replicaCount: 2
 
@@ -656,7 +656,7 @@ argocd repo add oci://ghcr.io/yahirmt/charts/books-api \
 # Crear aplicación usando chart OCI
 argocd app create books-api-staging-oci \
   --repo oci://ghcr.io/yahirmt/charts/books-api \
-  --revision 1.0.0 \
+  --revision 3.3.5 \
   --path . \
   --dest-server https://kubernetes.default.svc \
   --dest-namespace books-api-staging \
@@ -890,7 +890,7 @@ cp /path/to/books-api/gitops/values-staging.yaml books/api/values.yaml
 ```yaml
 # Debe tener exactamente esta estructura
 image:
-  tag: "1.0.0"
+  tag: "3.3.5"
 ```
 
 ### ArgoCD no Sincroniza Automáticamente
@@ -936,7 +936,7 @@ argocd app set books-api --sync-policy automated
    ```
 
 5. **Testing**: Prueba en staging antes de production
-   - Usa diferentes tags: `v1.0.0-staging`, `v1.0.0`
+   - Usa diferentes tags: `v3.3.5-staging`, `v3.3.5`
    - O diferentes workflows para cada ambiente
 
 ## Workflow Completo de Ejemplo

@@ -69,7 +69,7 @@ Las imágenes se construyen automáticamente con GitHub Actions y se publican en
 docker pull ghcr.io/OWNER/books-api:latest
 
 # Pull de una versión específica
-docker pull ghcr.io/OWNER/books-api:1.0.0
+docker pull ghcr.io/OWNER/books-api:3.3.5
 
 # Ejecutar desde GHCR
 docker run -p 3000:3000 \

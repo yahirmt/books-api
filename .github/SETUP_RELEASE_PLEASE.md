@@ -160,6 +160,6 @@ Si es la primera vez que usas Release Please en este repo:
    ```bash
    git commit -m "feat: initial release setup"
    ```
-2. Push a main y el workflow creará un PR para la versión 1.0.0
+2. Push a main y el workflow creará un PR para la versión 3.3.5
 3. Revisa y mergea el PR
 4. ¡Tu primer release está listo!

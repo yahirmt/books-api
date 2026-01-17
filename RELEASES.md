@@ -1,6 +1,6 @@
 # Sistema de Releases Automáticos
 
-Este proyecto usa **Release Please** para generar releases automáticamente basándose en los mensajes de commit.
+Este proyecto usa **Release Please** para generar releases automáticamente basándose en los mensajes de commit chart 3.3.5.
 
 ## 🚀 Cómo funciona
 
@@ -54,10 +54,10 @@ Al mergear el PR, automáticamente se:
 
 | Tipo | Incrementa | Ejemplo | Nueva versión |
 |------|------------|---------|---------------|
-| `feat:` | MINOR | `feat: add search` | 1.0.0 → 1.1.0 |
-| `fix:` | PATCH | `fix: resolve bug` | 1.0.0 → 1.0.1 |
-| `perf:` | PATCH | `perf: optimize db` | 1.0.0 → 1.0.1 |
-| `feat!:` | MAJOR | `feat!: new API` | 1.0.0 → 2.0.0 |
+| `feat:` | MINOR | `feat: add search` | 3.3.5 → 1.1.0 |
+| `fix:` | PATCH | `fix: resolve bug` | 3.3.5 → 1.0.1 |
+| `perf:` | PATCH | `perf: optimize db` | 3.3.5 → 1.0.1 |
+| `feat!:` | MAJOR | `feat!: new API` | 3.3.5 → 2.0.0 |
 | `docs:` | - | `docs: update` | No release |
 | `chore:` | - | `chore: deps` | No release |
 

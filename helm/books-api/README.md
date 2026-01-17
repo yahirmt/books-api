@@ -13,10 +13,10 @@ A Helm chart for deploying Books API - Built with Hono and Bun.
 
 ```bash
 # Pull the chart
-helm pull oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm pull oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 
 # Install the chart
-helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 ```
 
 ### From Source
@@ -67,7 +67,7 @@ Create a `values-custom.yaml` file:
 replicaCount: 3
 
 image:
-  tag: "1.0.0"
+  tag: "3.3.5"
 
 ingress:
   enabled: true
@@ -95,7 +95,7 @@ Install with custom values:
 
 ```bash
 helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
-  --version 1.0.0 \
+  --version 3.3.5 \
   -f values-custom.yaml
 ```
 

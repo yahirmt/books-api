@@ -56,7 +56,7 @@ Este directorio contiene los workflows de CI/CD para la Books API.
 - Publica la imagen en GitHub Container Registry (GHCR)
 - Genera tags automáticos basados en:
   - Rama (ej: `main`, `develop`)
-  - Versión semántica (ej: `v1.0.0`, `1.0`, `1`)
+  - Versión semántica (ej: `v3.3.5`, `1.0`, `1`)
   - SHA del commit (ej: `main-abc1234`)
   - `latest` para la rama principal
 - Crea attestation de provenance
@@ -144,13 +144,13 @@ git push origin main
 ### Formato de Commits
 
 ```bash
-# Nueva funcionalidad (incrementa MINOR: 1.0.0 → 1.1.0)
+# Nueva funcionalidad (incrementa MINOR: 3.3.5 → 1.1.0)
 git commit -m "feat: add book search endpoint"
 
-# Corrección de bug (incrementa PATCH: 1.0.0 → 1.0.1)
+# Corrección de bug (incrementa PATCH: 3.3.5 → 1.0.1)
 git commit -m "fix: resolve CORS error"
 
-# Breaking change (incrementa MAJOR: 1.0.0 → 2.0.0)
+# Breaking change (incrementa MAJOR: 3.3.5 → 2.0.0)
 git commit -m "feat!: redesign authentication API"
 ```
 
@@ -166,10 +166,10 @@ git checkout main
 git pull
 
 # 2. Crea un tag de versión
-git tag v1.0.0
+git tag v3.3.5
 
 # 3. Push del tag
-git push origin v1.0.0
+git push origin v3.3.5
 ```
 
 Esto activará el workflow `release.yml` (deprecado)
@@ -191,7 +191,7 @@ Esto activará el workflow `release.yml` (deprecado)
 docker pull ghcr.io/OWNER/books-api:latest
 
 # Versión específica
-docker pull ghcr.io/OWNER/books-api:1.0.0
+docker pull ghcr.io/OWNER/books-api:3.3.5
 
 # Desde una rama
 docker pull ghcr.io/OWNER/books-api:main
@@ -309,7 +309,7 @@ ls -la books/api/values.yaml
 # Verificar formato (debe tener):
 cat books/api/values.yaml
 # image:
-#   tag: "1.0.0"
+#   tag: "3.3.5"
 ```
 
 ### Error: "Permission denied to write to packages"

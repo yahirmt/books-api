@@ -1,6 +1,6 @@
 # Books API
 
-API de libros construida con [Hono](https://hono.dev/) y [Bun](https://bun.sh/). PRUEBAS
+API de libros construida con [Hono](https://hono.dev/) y [Bun](https://bun.sh/). PRUEBAS de 3.3.4
 
 ## 🚀 Inicio Rápido
 

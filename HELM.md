@@ -60,7 +60,7 @@ helm package helm/books-api -d .helm-charts
 echo $GITHUB_TOKEN | helm registry login ghcr.io -u USERNAME --password-stdin
 
 # 3. Push a OCI registry
-helm push .helm-charts/books-api-1.0.0.tgz oci://ghcr.io/yahirmt/charts
+helm push .helm-charts/books-api-3.3.5.tgz oci://ghcr.io/yahirmt/charts
 ```
 
 ## Instalación
@@ -69,11 +69,11 @@ helm push .helm-charts/books-api-1.0.0.tgz oci://ghcr.io/yahirmt/charts
 
 ```bash
 # Instalar directamente
-helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 
 # O descargar primero
-helm pull oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
-helm install my-books-api books-api-1.0.0.tgz
+helm pull oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
+helm install my-books-api books-api-3.3.5.tgz
 ```
 
 ### Desde el código fuente
@@ -86,9 +86,9 @@ helm install my-books-api ./helm/books-api
 
 ```bash
 helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
-  --version 1.0.0 \
+  --version 3.3.5 \
   --set replicaCount=3 \
-  --set image.tag=1.0.0 \
+  --set image.tag=3.3.5 \
   --set ingress.enabled=true
 ```
 
@@ -96,7 +96,7 @@ O con un archivo de valores:
 
 ```bash
 helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
-  --version 1.0.0 \
+  --version 3.3.5 \
   -f custom-values.yaml
 ```
 
@@ -112,7 +112,7 @@ replicaCount: 2
 image:
   repository: ghcr.io/yahirmt/books-api
   pullPolicy: IfNotPresent
-  tag: "1.0.0"
+  tag: "3.3.5"
 
 # Servicio
 service:
@@ -170,13 +170,13 @@ resources:
 
 ```bash
 # Ver metadata
-helm show chart oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm show chart oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 
 # Ver valores por defecto
-helm show values oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm show values oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 
 # Ver todo
-helm show all oci://ghcr.io/yahirmt/charts/books-api --version 1.0.0
+helm show all oci://ghcr.io/yahirmt/charts/books-api --version 3.3.5
 ```
 
 ### Gestión de releases
@@ -207,12 +207,12 @@ helm uninstall my-books-api
 ```bash
 # Dry run (ver los manifiestos sin instalar)
 helm install my-books-api oci://ghcr.io/yahirmt/charts/books-api \
-  --version 1.0.0 \
+  --version 3.3.5 \
   --dry-run --debug
 
 # Template (generar manifiestos)
 helm template my-books-api oci://ghcr.io/yahirmt/charts/books-api \
-  --version 1.0.0
+  --version 3.3.5
 
 # Lint (validar el chart)
 helm lint helm/books-api

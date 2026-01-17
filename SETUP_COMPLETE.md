@@ -112,13 +112,13 @@ docker run -p 3000:3000 books-api:latest
 ## 📋 Convenciones de Commits
 
 ```bash
-# Nueva funcionalidad (MINOR: 1.0.0 → 1.1.0)
+# Nueva funcionalidad (MINOR: 3.3.5 → 1.1.0)
 git commit -m "feat: add user authentication"
 
-# Bug fix (PATCH: 1.0.0 → 1.0.1)
+# Bug fix (PATCH: 3.3.5 → 1.0.1)
 git commit -m "fix: resolve memory leak"
 
-# Breaking change (MAJOR: 1.0.0 → 2.0.0)
+# Breaking change (MAJOR: 3.3.5 → 2.0.0)
 git commit -m "feat!: redesign API endpoints"
 
 # Otros (no generan release)

@@ -28,8 +28,8 @@ Update docs
 
 ## Tipos
 
-- `feat`: Nueva funcionalidad → **MINOR** version (1.0.0 → 1.1.0)
-- `fix`: Corrección de bug → **PATCH** version (1.0.0 → 1.0.1)
+- `feat`: Nueva funcionalidad → **MINOR** version (3.3.5 → 1.1.0)
+- `fix`: Corrección de bug → **PATCH** version (3.3.5 → 1.0.1)
 - `perf`: Mejora de rendimiento → **PATCH** version
 - `docs`: Documentación → No release
 - `style`: Formato de código → No release
@@ -51,7 +51,7 @@ feat: change API response format
 BREAKING CHANGE: Response format changed from XML to JSON
 ```
 
-Esto incrementa la versión **MAJOR** (1.0.0 → 2.0.0)
+Esto incrementa la versión **MAJOR** (3.3.5 → 2.0.0)
 
 ## Scopes (Opcional)
 

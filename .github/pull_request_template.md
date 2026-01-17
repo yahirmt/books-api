@@ -28,9 +28,9 @@
 Este PR generará un release automático si usas Conventional Commits.
 
 Ejemplos:
-- feat: add user authentication → Release MINOR (1.0.0 → 1.1.0)
-- fix: resolve CORS error → Release PATCH (1.0.0 → 1.0.1)
-- feat!: redesign API → Release MAJOR (1.0.0 → 2.0.0)
+- feat: add user authentication → Release MINOR (3.3.5 → 1.1.0)
+- fix: resolve CORS error → Release PATCH (3.3.5 → 1.0.1)
+- feat!: redesign API → Release MAJOR (3.3.5 → 2.0.0)
 
 Ver guía completa: CONTRIBUTING.md
 -->
